@@ -1,0 +1,20 @@
+# dependencies
+/node_modules/
+
+# build output
+/dist/
+build/
+
+# log files
+*.log
+
+# dotenv environment variable files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
