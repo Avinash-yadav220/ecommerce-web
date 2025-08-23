@@ -1,39 +1,24 @@
-import React, { useState } from 'react';
-import Login from './Login';
-import Register from './Register';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import Home from './components/Home';
+import ProtectedRoute from './components/ProtectedRoute'; // Import the new component
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [page, setPage] = useState('login');
-
-  const handleSetToken = t => {
-    setToken(t);
-    localStorage.setItem('token', t);
-  };
-
-  const handleLogout = () => {
-    setToken('');
-    localStorage.removeItem('token');
-    setPage('login');
-  };
-
   return (
-    <div>
-      <button className="switch-button" onClick={() => setPage('login')}>Login</button>
-      <button className="switch-button" onClick={() => setPage('register')}>Register</button>
+    <Router>
+      <Routes>
+      
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-      {token ? (
-        <div className="welcome-container">
-          <h2>Welcome! You are logged in.</h2>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        page === 'login' ? 
-          <Login setToken={handleSetToken} /> : 
-          <Register />
-      )}
-    </div>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
