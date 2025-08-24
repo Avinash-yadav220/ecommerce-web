@@ -1,9 +1,8 @@
-import React from 'react'
-import { getProducts } from '../controllers/productController';
-const express=require("express");
-const Router=express.Router()
+const express = require('express');
+const { getProducts } = require('../controllers/productController');
 
+const router = express.Router();
 
-Router.get('/',getProducts)
+router.get('/', getProducts);
 
-module.exports=Router
+module.exports = router;
