@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
 import ProtectedRoute from './components/ProtectedRoute'; // Import the new component
+import ProductCard from './components/ProductCard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
+          <Route path="/productCard" element={<ProductCard/>} />
         </Route>
       </Routes>
     </Router>
