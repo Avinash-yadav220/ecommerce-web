@@ -1,5 +1,15 @@
-const Products = require("../models/products");
+const Product = require("../models/products");
 
+
+const addProduct=async(req,res)=>{
+try {
+  const newProduct=new Product(req.body)
+  await newProduct.save()
+  return res.status(201).json(newProduct)
+} catch (error) {
+  res.status(500).json({ msg: 'Server error' });
+}
+}
 
 const getProducts=async(req,res)=>{
  try {
@@ -32,6 +42,8 @@ const getProducts=async(req,res)=>{
  }
 }
 
+
 module.exports={
-    getProducts
+    getProducts,
+    addProduct
 }
