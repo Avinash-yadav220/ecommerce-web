@@ -1,8 +1,7 @@
-import { validateToken } from "../services/jwtAuth";
+const{ validateToken }=require("../services/jwtAuth");
 
-
-export const verifyUser=(req,res,next)=>{
- const token=req.header('Authorization')?.split('')[1];
+const verifyUser=(req,res,next)=>{
+ const token=req.header('Authorization')?.split(" ")[1];
  if(!token){
   return res.status(401).json({msg:"NO token"})
  }
@@ -15,9 +14,14 @@ export const verifyUser=(req,res,next)=>{
  }
 }
 
-export const isAdmin=()=>{
+ const isAdmin=(req,res,next)=>{
  if(req.user.role!=='admin'){
     return res.status(403).json({msg:"unauthorized"})
  }
  next();
+}
+
+module.exports={
+verifyUser,
+isAdmin
 }

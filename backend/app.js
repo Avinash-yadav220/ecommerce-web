@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const cors = require('cors');
 const productRoutes = require('./routes/productRoutes');
+const path=require("path")
 
 dotenv.config();
 connectDB();
@@ -14,6 +15,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
