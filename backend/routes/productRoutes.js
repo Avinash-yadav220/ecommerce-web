@@ -1,6 +1,6 @@
 
-const express = require('express');
-const { getProducts } = require('../controllers/productController');
+// const express = require('express');
+// const { getProducts } = require('../controllers/productController');
 
 const{getProducts, addProduct}=require('../controllers/productController');
 const express=require("express");
