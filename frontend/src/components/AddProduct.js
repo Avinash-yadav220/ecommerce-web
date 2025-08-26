@@ -7,15 +7,18 @@ export default function AddProductForm() {
     name: '',
     description: '',
     price: '',
-    imageUrl: '',
     category: '',
     stock: ''
   });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const[imagefile,setimagefile]=useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handlefilechange = (e) => {
+    setimagefile(e.target.files[0])
   };
 
   const handleSubmit = async (e) => {
@@ -29,20 +32,33 @@ export default function AddProductForm() {
         throw new Error('You must be logged in as an admin to add products.');
       }
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      };
+    const data=new FormData()
+    data.append('name',formData.name)
+    data.append('description',formData.description)
+    data.append('price',formData.price)
+    data.append('category',formData.category)
+    data.append('stock',formData.stock)
+    data.append('imageUrl',imagefile)
 
-      const res = await axios.post('http://localhost:5000/api/products/add-product', formData, config);
+    const res = await fetch('http://localhost:5000/api/products/add-product',{
+        method:'POST',
+        headers:{
+          'Authorization':`Bearer ${token}`
+        },
+        body:data
+       });
+
+       
+    const result = await res.json();
+
+    if (!res.ok) throw new Error(result.msg || "Failed to add product");
       
       setMessage('Product added successfully!');
       setFormData({
-        name: '', description: '', price: '', imageUrl: '', category: '', stock: ''
+        name: '', description: '', price: '', category: '', stock: ''
       });
-      console.log('Product added:', res.data);
+      setimagefile(null)
+      console.log('Product added:', result);
       
     } catch (err) {
       if (err.response) {
@@ -60,7 +76,7 @@ export default function AddProductForm() {
         <input type="text" name="name" placeholder="Product Name" value={formData.name} onChange={handleChange} required />
         <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
         <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
-        <input type="text" name="imageUrl" placeholder="Image URL" value={formData.imageUrl} onChange={handleChange} required />
+        <input type="file" name="imageUrl" placeholder="Image URL" value={formData.imageUrl} onChange={handlefilechange} required />
         <input type="text" name="category" placeholder="Category" value={formData.category} onChange={handleChange} required />
         <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
         <button type="submit">Add Product</button>

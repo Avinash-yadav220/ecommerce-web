@@ -3,11 +3,28 @@ const Product = require("../models/products");
 
 const addProduct=async(req,res)=>{
 try {
-  const newProduct=new Product(req.body)
+  if(!req.file){
+    return res.status(400).json({msg:"No file uploaded"})
+  }
+  const {name,description,price,category,stock}=req.body;
+  const imageUrl=`/uploads/${req.file.filename}`
+
+  const newProduct=new Product(
+    { name,
+      description,
+      price,
+      category,
+      stock,
+      imageUrl
+    }
+  )
   await newProduct.save()
-  return res.status(201).json(newProduct)
+  res.status(200).json(newProduct)
+
+
+
 } catch (error) {
-  res.status(500).json({ msg: 'Server error' });
+  res.status(500).json({ msg: 'Server error' });
 }
 }
 
