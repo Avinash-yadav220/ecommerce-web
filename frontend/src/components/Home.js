@@ -1,6 +1,5 @@
 // src/components/ProductsPage.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Navbar from './Navbar';
 import ProductCard from './ProductCard';
 import CartSidebar from './CartSidebar';
@@ -24,14 +23,21 @@ export default function ProductsPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('http://localhost:5000/api/products', {
-        params: {
-          search: searchQuery,
+
+      const query=new URLSearchParams({
+         search: searchQuery,
           sort: sortOrder,
-          category: categoryFilter,
-        },
-      });
-      setProducts(res.data);
+         category: categoryFilter,
+      }).toString()
+
+      const res = await fetch(`http://localhost:5000/api/products${query?"?"+query:""}`);
+     
+      if(!res.ok){
+        throw new Error("Failed to fetch products")
+      }
+       const data=await res.json()
+      setProducts(data);
+
     } catch (err) {
       setError('Failed to fetch products. Please try again.');
     } finally {

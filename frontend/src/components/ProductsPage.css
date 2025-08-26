@@ -1,5 +1,5 @@
 /* src/components/ProductsPage.css */
-.page-layout {
+/* .page-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -17,5 +17,151 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+} */
+
+/* src/components/ProductsPage.css */
+/* 
+.products-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
+.content-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1;
+  padding: 20px 0;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  flex-shrink: 0;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group h4 {
+  margin-bottom: 10px;
+  color: #495057;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-group button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.main-products-grid {
+  flex-grow: 1;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.status-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+  width: 100%;
+}
+
+.status-message.error-message {
+  color: #dc3545;
+} */
+
+.products-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Adjust the content container for even side margins */
+/* .content-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1;
+  padding: 20px; 
+} */
+.content-container {
+  display: flex;
+  /* Set a fixed max-width that perfectly fits 5 product cards plus the gaps */
+  max-width: 1200px; /* Or a specific value that works for your product card size */
+  margin: 0 auto;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Add padding to the top to prevent products from being hidden behind the navbar */
+.main-products-grid {
+  flex-grow: 1;
+  padding-top: 80px; /* Add top padding to create space for the navbar's height (60px) plus some extra margin */
+}
+
+/* Remove horizontal padding from the grid itself; the parent container will handle it */
+.product-grid {
+  display: grid;
+  /* Use repeat() with a fixed number of columns (5) and '1fr' to distribute space evenly. */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 0;
+  /* Ensure the grid takes up the full width of its parent container */
+  width: 100%;
+}
+
+.status-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+  width: 100%;
+}
+
+.status-message.error-message {
+  color: #dc3545;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  flex-shrink: 0;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+/* The rest of the sidebar and filter CSS remains the same */

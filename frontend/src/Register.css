@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #e0e5ec;
@@ -112,5 +112,121 @@ body {
 
 .auth-link:hover {
   color: #0056b3;
+  text-decoration: underline;
+} */
+
+/* Container for the brand name and logo */
+/* Position the brand header to stay at the very top */
+.brand-header {
+  position: absolute;
+  top: 20px; /* Adjust this value for vertical spacing from the top */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row; /* Changed to row to place items side-by-side */
+  align-items: center; /* Vertically aligns logo and text */
+  z-index: 1000; /* Ensures it's always on top of other elements */
+}
+
+/* Updated brand logo styling */
+.brand-logo {
+  width: 50px; /* Adjusted size for a better look next to text */
+  height: auto;
+  margin-right: 10px; /* Adds space between the logo and the brand name */
+}
+
+/* Updated brand name styling */
+.brand-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #FF7F00;
+  margin: 0; /* Remove default margin to prevent unwanted spacing */
+}
+
+/* Other CSS rules remain the same... */
+
+.auth-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.auth-form-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-top: 100px; /* Space to account for the fixed header */
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #FF7F00;
+  box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.2);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF7F00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #E66A00;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fce4e4;
+  border: 1px solid #e74c3c;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.auth-link-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-link {
+  color: #FF7F00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-link:hover {
   text-decoration: underline;
 }
