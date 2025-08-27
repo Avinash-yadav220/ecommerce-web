@@ -8,7 +8,7 @@ try {
     return res.status(400).json({msg:"No file uploaded"})
   }
   const {name,description,price,category,stock}=req.body;
-  const imageUrl=`/uploads/${req.file.filename}`
+  const imageUrl=`uploads/${req.file.filename}`
 
   const newProduct=new Product(
     { name,
