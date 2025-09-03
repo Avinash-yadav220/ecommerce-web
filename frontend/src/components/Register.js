@@ -1,85 +1,17 @@
-// import React, { useState } from 'react';
-// import './App.css';
-
-// export default function Register() {
-//   const [name, setName] = useState('');
-//   const [email,setEmail] = useState('');
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [message, setMessage] = useState('');
-//   const [error, setError] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setMessage('');
-//     setError('');
-//     try {
-//       const res = await fetch('http://localhost:5000/api/auth/register', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ username,password,name,email}),
-//       });
-//         const data = await res.json();
-//       if (!res.ok) throw new Error(data.msg || 'Registration failed');
-//       localStorage.setItem("token",data.token)
-    
-//       setMessage('Registration successful! You can now log in.');
-//       setName('');
-//       setUsername('');
-//       setEmail('');
-//       setPassword('');
-      
-//     } catch (err) {
-//       setError(err.message);
-//     }
-//   };
-
-//   return (
-//     <form className="form-container" onSubmit={handleSubmit}>
-//       <h2>Register</h2>
-//        <input 
-//         type="text" 
-//         placeholder="Name" 
-//         value={name} 
-//         onChange={e => setName(e.target.value)} 
-//         required />
-//       <input 
-//         type="text" 
-//         placeholder="Username" 
-//         value={username} 
-//         onChange={e => setUsername(e.target.value)} 
-//         required />
-//      <input 
-//         type="email" 
-//         placeholder="Email" 
-//         value={email} 
-//         onChange={e => setEmail(e.target.value)} 
-//         required />
-//       <input 
-//         type="password" 
-//         placeholder="Password" 
-//         value={password} 
-//         onChange={e => setPassword(e.target.value)} 
-//         required />
-//       <button type="submit">Register</button>
-//       {message && <div style={{color: 'green', textAlign: 'center', marginTop: '10px'}}>{message}</div>}
-//       {error && <div className="error-message">{error}</div>}
-//     </form>
-//   );
-// }
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-import '../Register.css'; // New, improved CSS file
+import { useNavigate, Link } from 'react-router-dom'; // Keep Link for consistency
+import '../Register.css';
+import oasis from "../assets/Images/oasis.png";
 
-export default function Register({setToken}) {
+export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -90,26 +22,36 @@ export default function Register({setToken}) {
         body: JSON.stringify({ username, password, name, email }),
       });
 
-       const data = await res.json();
+      const data = await res.json();
       if (!res.ok) {
         throw new Error(data.msg || 'Registration failed');
       }
-     
-       localStorage.setItem('token',data.token)
 
+      localStorage.setItem('token', data.token);
+
+      // Navigate to the home page after successful registration
+      navigate('/');
       
     } catch (err) {
-      // Catch the error and display its message
       setError(err.message);
     }
   };
 
-
   return (
     <div className="auth-page-container">
-      <div className="auth-form-card">
+      <div className="auth-form-card brand-card-shadow">
+        <div className="brand-header">
+           <img 
+          src={oasis} 
+          alt="Groomberg Logo" 
+          className="brand-logo" 
+        />
+          <h1 className="brand-name">Oasis</h1>
+        </div>
+
         <h2 className="auth-title">Create an Account</h2>
         <p className="auth-subtitle">Join us to start shopping!</p>
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="name">Name</label>
@@ -119,7 +61,8 @@ export default function Register({setToken}) {
               placeholder="Full Name" 
               value={name} 
               onChange={e => setName(e.target.value)} 
-              required />
+              required 
+            />
           </div>
           <div className="input-group">
             <label htmlFor="email">Email</label>
@@ -129,7 +72,8 @@ export default function Register({setToken}) {
               placeholder="example@example.com" 
               value={email} 
               onChange={e => setEmail(e.target.value)} 
-              required />
+              required 
+            />
           </div>
           <div className="input-group">
             <label htmlFor="username">Username</label>
@@ -139,7 +83,8 @@ export default function Register({setToken}) {
               placeholder="Choose a username" 
               value={username} 
               onChange={e => setUsername(e.target.value)} 
-              required />
+              required 
+            />
           </div>
           <div className="input-group">
             <label htmlFor="password">Password</label>
@@ -149,13 +94,17 @@ export default function Register({setToken}) {
               placeholder="Create a strong password" 
               value={password} 
               onChange={e => setPassword(e.target.value)} 
-              required />
+              required 
+            />
           </div>
-          <button type="submit" className="auth-button">Register</button>
+          <button type="submit" className="auth-button brand-button">Register</button>
         </form>
+
         {error && <div className="error-message">{error}</div>}
+        
         <div className="auth-link-container">
-          Already have an account
+          {/* Use the Link component for better client-side routing */}
+          <Link to="/login" className="auth-link">Already have an account?</Link>
         </div>
       </div>
     </div>

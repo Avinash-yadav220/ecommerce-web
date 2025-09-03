@@ -1,4 +1,4 @@
-import React, { createContext, use, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 
@@ -20,15 +20,22 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const login=()=>{
-        const token=localStorage.getItem('token')
-        const DecodedUser=jwtDecode(token)
-        setUser(DecodedUser)
-    }
-
-    const logout=()=>{
+    const login = async (token) => {
+        return new Promise((resolve) => {
+            localStorage.setItem('token', token);
+            const decodedUser = jwtDecode(token);
+            setUser(decodedUser);
+            resolve();
+        });
+    };
+    const logout=(navigate)=>{
             localStorage.removeItem('token')
             setUser(null);
+            if(navigate){
+
+                navigate('/login')
+            }
+
         }
 
 

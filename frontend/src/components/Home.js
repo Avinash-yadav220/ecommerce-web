@@ -1,10 +1,11 @@
 // src/components/ProductsPage.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from './Navbar';
 import ProductCard from './ProductCard';
 import CartSidebar from './CartSidebar';
 import './ProductsPage.css';
+import ProductModal from './productModal';
+import { AuthContext } from '../context/AuthContext';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -15,23 +16,39 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
+  const[selectedProduct,setSelectedProduct]=useState(null)
+    const {user}=useContext(AuthContext)
 
   useEffect(() => {
     fetchProducts();
-  }, [searchQuery, sortOrder, categoryFilter]);
+   }, [searchQuery, sortOrder, categoryFilter]);
 
+
+   useEffect(()=>{
+    if(user){
+      fetchCart()
+    }
+   },[user])
+   
   const fetchProducts = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('http://localhost:5000/api/products', {
-        params: {
-          search: searchQuery,
+
+      const query=new URLSearchParams({
+         search: searchQuery,
           sort: sortOrder,
-          category: categoryFilter,
-        },
-      });
-      setProducts(res.data);
+         category: categoryFilter,
+      }).toString()
+
+      const res = await fetch(`http://localhost:5000/api/products${query?"?"+query:""}`);
+     
+      if(!res.ok){
+        throw new Error("Failed to fetch products")
+      }
+       const data=await res.json()
+      setProducts(data);
+
     } catch (err) {
       setError('Failed to fetch products. Please try again.');
     } finally {
@@ -39,17 +56,63 @@ export default function ProductsPage() {
     }
   };
 
-  const handleAddToCart = (product) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item._id === product._id);
-      if (existingItem) {
-        return prevCart.map(item =>
-          item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  };
+  const fetchCart=async()=>{
+ try {
+    const token=localStorage.getItem('token');
+      if(!token){
+        console.error("No token found. Cannot fetch cart.");
+        return;
+    }
+
+    const res=await fetch('http://localhost:5000/api/cart/get-cart',{
+     headers:{
+       'Authorization':`Bearer ${token}`
+    }
+    })
+    const data=await res.json()
+    setCart(data.Items||[])
+ } catch (error) {
+  console.error("Failed to fetch cart")
+  setCart([])
+ }
+  }
+
+  const handleAddToCart = async(product) => {
+
+try {
+   const token=localStorage.getItem('token');
+   
+   if(!token){
+    alert("login to add to cart")
+    return
+   }
+  
+   const result=await fetch('http://localhost:5000/api/cart/addtoCart',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+       'Authorization':`Bearer ${token}`
+    },
+    body:JSON.stringify({
+      productId:product._id,
+      quantity:product.quantity||1,
+      size:product.selectedSize,
+    })
+   })
+  
+   if(!result.ok){
+    const errorData=await result.json()
+    throw new Error(errorData.msg||"Failed to add to cart")
+   }
+  
+   const updatedCart=await result.json();
+  
+   setCart(updatedCart.Items)
+  
+} catch (error) {
+  alert(error.message)
+}
+  }
 
   return (
     <div className="page-layout">
@@ -72,8 +135,10 @@ export default function ProductsPage() {
             {products.map(product => (
               <ProductCard 
                 key={product._id} 
-                product={product} 
-                onAddToCart={() => handleAddToCart(product)} 
+                product={product}
+                onAddToCart={() => handleAddToCart({...product,quantity:1,selectedSize:'M'})} 
+                onProductClick={() => setSelectedProduct(product)} // 
+
               />
             ))}
           </div>
@@ -85,6 +150,14 @@ export default function ProductsPage() {
         cart={cart}
         setCart={setCart}
       />
+
+       {selectedProduct && (
+        <ProductModal 
+          product={selectedProduct} 
+          onClose={() => setSelectedProduct(null)} 
+          onAddToCart={handleAddToCart}
+        />
+      )}
     </div>
   );
 }
