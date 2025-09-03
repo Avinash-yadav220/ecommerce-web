@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../Register.css';
-import trans from "../assets/Images/trans.png";
+import oasis from "../assets/Images/oasis.png";
 import { AuthContext } from '../context/AuthContext';
 
 
@@ -46,11 +46,11 @@ export default function Login() {
       {/* Brand Name & Logo Section */}
       <div className="brand-header">
         <img
-          src={trans}
+          src={oasis}
           alt="Groomberg Logo"
           className="brand-logo"
         />
-        <h1 className="brand-name">Groomberg</h1>
+        <h1 className="brand-name">Oasis</h1>
       </div>
 
       {/* Form Card Container */}

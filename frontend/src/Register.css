@@ -1,122 +1,5 @@
-/* body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #e0e5ec;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
 
-.auth-page-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.auth-form-card {
-  background: #f0f2f5;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 10px 10px 20px #c5c7d1, -10px -10px 20px #ffffff;
-  width: 100%;
-  max-width: 400px;
-  box-sizing: border-box;
-}
-
-.auth-title {
-  text-align: center;
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 2.2rem;
-  font-weight: 600;
-}
-
-.auth-subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 30px;
-  font-size: 1rem;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #444;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px 15px;
-  border: none;
-  border-radius: 8px;
-  background: #e0e5ec;
-  box-shadow: inset 5px 5px 10px #c5c7d1, inset -5px -5px 10px #ffffff;
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-  outline: none;
-  background: #f0f2f5;
-  box-shadow: inset 2px 2px 5px #c5c7d1, inset -2px -2px 5px #ffffff;
-}
-
-.auth-button {
-  width: 100%;
-  padding: 15px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: bold;
-  box-shadow: 5px 5px 10px #c5c7d1, -5px -5px 10px #ffffff;
-  transition: all 0.3s ease;
-}
-
-.auth-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 7px 7px 15px #b0b2b8, -7px -7px 15px #ffffff;
-}
-
-.auth-button:active {
-  transform: translateY(0);
-  box-shadow: inset 2px 2px 5px #b0b2b8, inset -2px -2px 5px #ffffff;
-}
-
-.error-message {
-  color: #dc3545;
-  text-align: center;
-  margin-top: 15px;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.auth-link-container {
-  text-align: center;
-  margin-top: 20px;
-  color: #777;
-}
-
-.auth-link {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.auth-link:hover {
-  color: #0056b3;
-  text-decoration: underline;
-} */
-
-/* Container for the brand name and logo */
-/* Position the brand header to stay at the very top */
 .brand-header {
   position: absolute;
   top: 20px; /* Adjust this value for vertical spacing from the top */
@@ -137,10 +20,12 @@
 
 /* Updated brand name styling */
 .brand-name {
+  font-family: 'Cinzel', serif;
   font-size: 2.5rem;
   font-weight: bold;
   color: #FF7F00;
   margin: 0; /* Remove default margin to prevent unwanted spacing */
+
 }
 
 /* Other CSS rules remain the same... */

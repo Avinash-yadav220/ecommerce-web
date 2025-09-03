@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'; // Import the new comp
 import ProductCard from './components/ProductCard';
 import { AuthProvider } from './context/AuthContext';
 import AddProductForm from './components/AddProduct';
+import CheckoutPage from './components/CheckoutPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           
           <Route path='/add-product'element={<AddProductForm/>}/>
           <Route path="/productCard" element={<ProductCard/>} />
+          <Route path="/checkout" element={<CheckoutPage/>} />
         </Route>
       </Routes>
     </Router>
