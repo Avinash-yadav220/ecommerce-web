@@ -1,102 +1,7 @@
-
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import '../Register.css'; // New, improved CSS file
-
-// export default function Register({setToken}) {
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [error, setError] = useState('');
-//   const navigate = useNavigate();
-
-//    const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setError('');
-
-//     try {
-//       const res = await fetch('http://localhost:5000/api/auth/register', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ username, password, name, email }),
-//       });
-
-//        const data = await res.json();
-//       if (!res.ok) {
-//         throw new Error(data.msg || 'Registration failed');
-//       }
-     
-//        localStorage.setItem('token',data.token)
-
-      
-//     } catch (err) {
-//       // Catch the error and display its message
-//       setError(err.message);
-//     }
-//   };
-
-
-//   return (
-//     <div className="auth-page-container">
-//       <div className="auth-form-card">
-//         <h2 className="auth-title">Create an Account</h2>
-//         <p className="auth-subtitle">Join us to start shopping!</p>
-//         <form onSubmit={handleSubmit}>
-//           <div className="input-group">
-//             <label htmlFor="name">Name</label>
-//             <input 
-//               id="name"
-//               type="text" 
-//               placeholder="Full Name" 
-//               value={name} 
-//               onChange={e => setName(e.target.value)} 
-//               required />
-//           </div>
-//           <div className="input-group">
-//             <label htmlFor="email">Email</label>
-//             <input 
-//               id="email"
-//               type="email" 
-//               placeholder="example@example.com" 
-//               value={email} 
-//               onChange={e => setEmail(e.target.value)} 
-//               required />
-//           </div>
-//           <div className="input-group">
-//             <label htmlFor="username">Username</label>
-//             <input 
-//               id="username"
-//               type="text" 
-//               placeholder="Choose a username" 
-//               value={username} 
-//               onChange={e => setUsername(e.target.value)} 
-//               required />
-//           </div>
-//           <div className="input-group">
-//             <label htmlFor="password">Password</label>
-//             <input 
-//               id="password"
-//               type="password" 
-//               placeholder="Create a strong password" 
-//               value={password} 
-//               onChange={e => setPassword(e.target.value)} 
-//               required />
-//           </div>
-//           <button type="submit" className="auth-button">Register</button>
-//         </form>
-//         {error && <div className="error-message">{error}</div>}
-//         <div className="auth-link-container">
-//            <button onClick={()=>navigate('/login')}>Already have an account</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Keep Link for consistency
 import '../Register.css';
-import trans from "../assets/Images/trans.png";
+import oasis from "../assets/Images/oasis.png";
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -137,11 +42,11 @@ export default function Register() {
       <div className="auth-form-card brand-card-shadow">
         <div className="brand-header">
            <img 
-          src={trans} 
+          src={oasis} 
           alt="Groomberg Logo" 
           className="brand-logo" 
         />
-          <h1 className="brand-name">Groomberg</h1>
+          <h1 className="brand-name">Oasis</h1>
         </div>
 
         <h2 className="auth-title">Create an Account</h2>

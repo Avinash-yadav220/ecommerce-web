@@ -1,0 +1,75 @@
+/* src/components/CheckoutPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.checkout-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.checkout-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.checkout-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-container input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #FF7F00;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.checkout-container input:focus {
+  outline: none;
+  border-color: #FF7F00;
+  box-shadow: 0 0 5px rgba(255, 127, 0, 0.5);
+}
+
+.checkout-container button[type="submit"] {
+  padding: 15px;
+  background-color: #FF7F00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-container button[type="submit"]:hover {
+  background-color: #e66a00;
+  transform: translateY(-2px);
+}
+
+.checkout-container button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: translateY(0);
+}
+
+.error-message {
+  text-align: center;
+  margin-top: 20px;
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 1rem;
+}
