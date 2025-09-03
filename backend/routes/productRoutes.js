@@ -1,3 +1,7 @@
+
+// const express = require('express');
+// const { getProducts } = require('../controllers/productController');
+
 const{getProducts, addProduct}=require('../controllers/productController');
 const express=require("express");
 const { verifyUser, isAdmin } = require('../Middleware/auth');
@@ -20,4 +24,5 @@ const upload=multer({storage:storage})
 Router.get('/',getProducts)
 Router.post('/add-product',verifyUser,isAdmin,upload.single('imageUrl'),addProduct)
 
-module.exports=Router
+
+module.exports = Router;

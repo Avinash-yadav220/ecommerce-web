@@ -1,3 +1,4 @@
+
 const{ validateToken }=require("../services/jwtAuth");
 
 const verifyUser=(req,res,next)=>{
@@ -25,3 +26,5 @@ module.exports={
 verifyUser,
 isAdmin
 }
+
+
