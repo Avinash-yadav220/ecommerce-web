@@ -1,3 +1,50 @@
+// // App.js
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Login from './components/Login';
+// import Register from './components/Register';
+// import Home from './components/Home';
+// import ProtectedRoute from './components/ProtectedRoute'; // Import the new component
+// import ProductCard from './components/ProductCard';
+// import { AuthProvider } from './context/AuthContext';
+// import AddProductForm from './components/AddProduct';
+// import CheckoutPage from './components/CheckoutPage';
+
+// function App() {
+//   return (
+//     <AuthProvider>
+//     <Router>
+//       <Routes>
+      
+//         <Route path="/" element={<Home />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/register" element={<Register />} />
+
+//         <Route element={<ProtectedRoute />}>
+          
+//           <Route path='/add-product'element={<AddProductForm/>}/>
+//           <Route path="/productCard" element={<ProductCard/>} />
+//           <Route path="/checkout" element={<CheckoutPage/>} />
+//         </Route>
+//       </Routes>
+//     </Router>
+//     </AuthProvider>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -9,25 +56,25 @@ import ProductCard from './components/ProductCard';
 import { AuthProvider } from './context/AuthContext';
 import AddProductForm from './components/AddProduct';
 import CheckoutPage from './components/CheckoutPage';
+import OrdersPage from './components/OrdersPage';  // Import OrdersPage
 
 function App() {
   return (
     <AuthProvider>
-    <Router>
-      <Routes>
-      
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route element={<ProtectedRoute />}>
-          
-          <Route path='/add-product'element={<AddProductForm/>}/>
-          <Route path="/productCard" element={<ProductCard/>} />
-          <Route path="/checkout" element={<CheckoutPage/>} />
-        </Route>
-      </Routes>
-    </Router>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/add-product" element={<AddProductForm />} />
+            <Route path="/orders" element={<OrdersPage />} />  {/* New route */}
+            <Route path="/productCard" element={<ProductCard />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Route>
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }
