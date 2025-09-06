@@ -1,11 +1,7 @@
-
-
-
-
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
-
+import "./OrderPage.css"
 const OrdersPage = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
@@ -41,28 +37,52 @@ const OrdersPage = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>All Orders</h2>
+    <div className="order-page-container">
+      <h2 className="page-title">All Orders</h2>
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p className="no-orders-message">No orders found.</p>
       ) : (
-        <ul>
+        <div className="orders-grid">
           {orders.map((order) => (
-            <li key={order._id} style={{ marginBottom: "1rem" }}>
-              <strong>User:</strong> {order.userId?.name || "Unknown"} <br />
-              <strong>Total:</strong> ₹{order.totalAmount} <br />
-              <strong>Date:</strong> {new Date(order.createdAt).toLocaleString()} <br />
-              <strong>Items:</strong>
-              <ul>
+            <div key={order._id} className="order-card">
+              <div className="order-header">
+                <p><strong>Order ID:</strong> {order._id}</p>
+                <p><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</p>
+              </div>
+              <div className="order-details">
+                <p><strong>User:</strong> {order.userId?.name || "Unknown"} ({order.userId?.email || "N/A"})</p>
+                <p><strong>Total:</strong> ₹{order.totalAmount}</p>
+
+                <div className="shipping-address">
+                  {order.shippingAddress ? (
+                    <>
+                      <p><strong>Street:</strong> {order.shippingAddress.street}</p>
+                      <p><strong>City:</strong> {order.shippingAddress.city}</p>
+                      <p><strong>State:</strong> {order.shippingAddress.state}</p>
+                      <p><strong>Postal Code:</strong> {order.shippingAddress.postalCode}</p>
+                      <p><strong>Country:</strong> {order.shippingAddress.country}</p>
+                      <p><strong>Contact:</strong> {order.shippingAddress.contact}</p>
+                    </>
+                  ) : (
+                    <p>Address not provided.</p>
+                  )}
+                </div>
+              </div>
+              <div className="order-items">
                 {order.Items.map((item) => (
-                  <li key={item.productId._id}>
-                    {item.name} - Quantity: {item.quantity}
-                  </li>
+                  <div key={item.productId._id} className="order-item-card">
+                    <img src={`http://localhost:5000/${item.productId.imageUrl}`} alt={item.name} className="order-item-image" />
+                    <div className="order-item-info">
+                      <p className="item-name">{item.name}</p>
+                      <p className="item-details">Qty: {item.quantity} | Size: {item.size}</p>
+                      <p className="item-price">₹{item.price}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </li>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -20,8 +20,8 @@ export default function CheckoutPage() {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
-  
-  
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -35,9 +35,9 @@ export default function CheckoutPage() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ shippingAddress: address,contact:address.contact }),
+        body: JSON.stringify({ shippingAddress: address, contact: address.contact }),
       });
-      
+
       const data = await res.json();
       setLoading(false);
 
@@ -45,15 +45,17 @@ export default function CheckoutPage() {
         throw new Error(data.msg || 'Failed to create order');
       }
 
-    //   Open Cashfree payment modal
-    //   const cashfree = new window.Cashfree(data.payment_session_id);
-    //   cashfree.redirectToCheckout();
+      if (!data || !data.payment_session_id) {
+        setError("Payment session creation failed");
+        return;
+      }
 
-    const cashfree = window.Cashfree({ mode: "sandbox" }); // use "production" later
-    cashfree.checkout({
-      paymentSessionId: data.payment_session_id,
-      redirectTarget: "_self" // or "_blank"
-    });
+
+      const cashfree = window.Cashfree({ mode: "sandbox" }); // use "production" later
+      cashfree.checkout({
+        paymentSessionId: data.payment_session_id,
+        redirectTarget: "_self" // or "_blank"
+      });
 
     } catch (err) {
       setError(err.message);

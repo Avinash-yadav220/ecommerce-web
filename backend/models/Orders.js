@@ -26,7 +26,7 @@ const OrderSchema = new mongoose.Schema({
         contact:Number
     },
     totalAmount:{
-        type:String,
+        type:Number,
         required:true
     },
     paymentStatus:{
@@ -34,7 +34,10 @@ const OrderSchema = new mongoose.Schema({
         default:'pending',
         enum:['pending','paid','failed']
     },
-    cashfreeOrderId:String
+    cashfreeOrderId:{
+       type: String,
+       unique:true
+    }
 },{timestamps:true})
 
 module.exports =mongoose.model("Order",OrderSchema)
