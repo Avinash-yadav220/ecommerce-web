@@ -1,0 +1,227 @@
+/* src/components/OrderPage.css - Improved Styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* Main container for the entire page */
+.order-page-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa; /* Light background for the page */
+  min-height: calc(100vh - 80px); /* Adjust based on your Navbar/Footer height */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Soft shadow for the container */
+}
+
+/* Page title styling */
+.page-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  color: #FF7F00; /* Your theme orange */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Message when no orders are found */
+.no-orders-message {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #777;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid layout for all order cards */
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* Responsive columns */
+  gap: 30px; /* Space between order cards */
+}
+
+/* Styling for each individual order card */
+.order-card {
+  background-color: #fff; /* White background for each card */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Clearer shadow */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ffe6cc; /* Light orange border */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.order-card:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header section within each order card */
+.order-header {
+  border-bottom: 2px solid #ffcc99; /* Orange border for separation */
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+.order-header p {
+  margin: 5px 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.order-header p strong {
+  color: #FF7F00; /* Orange for strong labels */
+}
+
+/* Details section within each order card */
+.order-details p {
+  margin: 8px 0;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.order-details p strong {
+  color: #FF7F00; /* Orange for strong labels */
+}
+
+/* Payment status badge styling */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px; /* More rounded pill shape */
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: capitalize; /* Capitalize the first letter */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific colors for different statuses */
+.status-paid {
+  background-color: #28a745; /* Green */
+}
+
+.status-pending {
+  background-color: #ffc107; /* Yellow/Orange */
+}
+
+.status-failed {
+  background-color: #dc3545; /* Red */
+}
+
+/* Container for individual items within an order */
+.order-items {
+  margin-top: 25px;
+  border-top: 1px dashed #ffe6cc; /* Dashed separator */
+  padding-top: 20px;
+}
+
+/* Styling for each product item within an order */
+.order-item-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 12px;
+  background-color: #fff8f2; /* Very light orange background for items */
+  border-radius: 8px;
+  border: 1px solid #ffebda; /* Subtle border */
+}
+
+/* Product image styling */
+.order-item-image {
+  width: 80px; /* Increased size for better visibility */
+  height: 80px; /* Ensure square aspect ratio */
+  object-fit: cover; /* Crop to fit, maintain aspect ratio */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Soft shadow for image */
+  border: 1px solid #FF7F00; /* Orange border for the image */
+}
+
+/* Info section next to the image */
+.order-item-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.item-details {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 4px 0;
+}
+
+.item-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #FF7F00; /* Theme orange for price */
+  margin: 0;
+}
+
+.shipping-address {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #ffe6cc;
+}
+
+.shipping-address h4 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #FF7F00;
+  font-weight: 600;
+}
+
+.shipping-address p {
+  margin: 2px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.shipping-address p strong {
+  color: #333;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .order-page-container {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  .orders-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .order-card {
+    padding: 20px;
+  }
+
+  .order-item-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .item-name {
+    font-size: 1rem;
+  }
+
+  .item-details, .item-price {
+    font-size: 0.9rem;
+  }
+}
