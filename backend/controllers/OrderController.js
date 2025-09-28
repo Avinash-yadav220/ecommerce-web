@@ -1,5 +1,5 @@
 const Cart = require("../models/Cart");
-const Order = require("../models/orders");
+const Order = require("../models/Order");
 
 const axios = require("axios");
 const PendingOrder = require("../models/PendingOrder");
@@ -22,7 +22,7 @@ const createOrder = async (req, res) => {
     console.log("Webhook base URL:", process.env.PUBLIC_WEBHOOK_BASE_URL);
 
     const response = await axios.post(
-      "https://sandbox.cashfree.com/pg/orders",
+      "https://sandbox.cashfree.com/pg/Order",
       {
         order_amount: totalAmount, // replace with req.body.amount if dynamic
         order_currency: "INR",
